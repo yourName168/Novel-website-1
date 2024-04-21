@@ -15,21 +15,21 @@ let chapterId = getQueryParameter('chapterId');
 let novelCode = getQueryParameter('novelCode');
 
 const getChapter = async (chapterId, novelCode) => {
-    const response = await fetch(`http://localhost:4000/novels/get-chapter?chapterId=${chapterId}&novelCode=${novelCode}`, {
+    const response = await fetch(`http://193.203.160.126:3535/novels/get-chapter?chapterId=${chapterId}&novelCode=${novelCode}`, {
         method: "GET"
     });
     return response.json();
 }
 
 const getPreviousChapter = async (chapterId, novelCode) => {
-    const response = await fetch(`http://localhost:4000/novels/get-previous-chapter?chapterId=${chapterId}&novelCode=${novelCode}`, {
+    const response = await fetch(`http://193.203.160.126:3535/novels/get-previous-chapter?chapterId=${chapterId}&novelCode=${novelCode}`, {
         method: "GET"
     });
     return response.json();
 }
 
 const getNextChapter = async (chapterId, novelCode) => {
-    const response = await fetch(`http://localhost:4000/novels/get-next-chapter?chapterId=${chapterId}&novelCode=${novelCode}`, {
+    const response = await fetch(`http://193.203.160.126:3535/novels/get-next-chapter?chapterId=${chapterId}&novelCode=${novelCode}`, {
         method: "GET"
     });
     return response.json();

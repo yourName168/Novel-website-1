@@ -1,7 +1,7 @@
 const topViewNovelSelector = document.querySelector('.view-list');
 const slideSelector = document.querySelector('.slider');
 const fetchData = async () => {
-    const response = await fetch("http://localhost:4000/novels/get-novel-sorted-by-view", {
+    const response = await fetch("http://193.203.160.126:3535/novels/get-novel-sorted-by-view", {
         method: "GET"
     });
     return response.json();

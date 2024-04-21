@@ -4,7 +4,7 @@ const listCategoryOnHeader = document.querySelector('.list');
 const maxCategoriesToShow = 8; // Maximum number of categories to show
 
 const getListCategory = async () => {
-    const response = await fetch("http://localhost:4000/novels/get-all-category", {
+    const response = await fetch("http://193.203.160.126:3535/novels/get-all-category", {
         method: "GET"
     });
     return response.json();

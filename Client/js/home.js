@@ -1,4 +1,4 @@
-import { renderTopCategoryView,renderAllCategory } from './category.js';
+import { renderAllCategory, renderTopCategoryView } from './category.js';
 import { renderTopViewNovel, slideAction } from './topViewNovel.js';
 const listNovelSelector = document.querySelector('.list-novel-new');
 const getQUeryString = (name) => {
@@ -12,7 +12,7 @@ const fetchData = async (listId) => {
     if(listId !== null){
         queryRequest=listId.split(',').map((id) => `${id}`).join("&listNovelId=");
     }
-    const response = await fetch(`http://localhost:4000/novels/get-list-novel-by-list-id?listNovelId=${queryRequest}`, {
+    const response = await fetch(`http://193.203.160.126:3535/novels/get-list-novel-by-list-id?listNovelId=${queryRequest}`, {
         method: "GET"
     });
     return response.json();

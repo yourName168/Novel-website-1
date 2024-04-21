@@ -1,6 +1,6 @@
 
+import { renderAllCategory, renderTopCategoryView } from './category.js';
 import { renderTopViewNovel } from './topViewNovel.js';
-import { renderAllCategory,renderTopCategoryView } from './category.js';
 const bannerSelector = document.querySelector('.inner-banner');
 const tableBodySelector = document.querySelector('.table-body');
 
@@ -11,14 +11,14 @@ const getQUeryString = (name) => {
 }
 
 const getNovel = async (novelId) => {
-    const response = await fetch(`http://localhost:4000/novels/get-list-novel-by-list-id?listNovelId=${novelId}`, {
+    const response = await fetch(`http://193.203.160.126:3535/novels/get-list-novel-by-list-id?listNovelId=${novelId}`, {
         method: "GET"
     });
     return response.json(); // Assuming response is JSON
 }
 
 const getListChapterOfNovel = async (novelCode) => {
-    const response = await fetch(`http://localhost:4000/novels/get-chapter-in-novel?novelCode=${novelCode}`, {
+    const response = await fetch(`http://193.203.160.126:3535/novels/get-chapter-in-novel?novelCode=${novelCode}`, {
         method: "GET"
     });
     return response.json(); // Assuming response is JSON
