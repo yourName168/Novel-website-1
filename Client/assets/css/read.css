@@ -1,0 +1,39 @@
+
+
+
+main {
+    position: relative;
+    top: 73px;
+}
+
+main .control-bar {
+    background: #000;    
+    padding: 20px 0;    
+    width: 100%;     
+    border-bottom: 1px solid white;
+}
+ 
+main .bar {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    margin-left: 10%;
+    margin-right: 10%;
+    font-size: 24px;
+}
+
+main .bar li {
+    cursor: pointer;
+}
+footer {
+    position: relative;
+    top: 73px;
+}
+
+@media (max-width: 1200px) {
+    main, 
+    footer {
+        top: 68px;
+    }
+}
