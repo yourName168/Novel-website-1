@@ -23,7 +23,7 @@ const renderNovel = (data) => {
     data.forEach(novel => {
         // Create HTML for each novel
         const novelHTML = `
-            <div class="item-novel-new">
+            <div class="item-novel-new col-xl-3 col-md-4 col-6">
                 <a href="./detail.html?id=${novel._id}">
                     <div class="image-container">
                         <img src="${novel.descriptionImage}" alt="">

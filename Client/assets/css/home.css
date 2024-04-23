@@ -237,6 +237,7 @@ section .content .list-novel-new .item-novel-new img {
 section .image-container {
     position: relative;
     display: inline-block;
+    width: 100%;
 }
 
 section .image-container .desc-in {
