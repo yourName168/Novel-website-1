@@ -12,15 +12,17 @@ interface NovelSType {
   status?: NovelStatus
 }
 export class Novel {
-  private descriptionURL: URL
+  descriptionURL: URL
   novelCode: string
-  private authorName: string
+  authorName: string
   episodes: number
-  private descriptionImage: URL | string
-  private novelName: string
-  private category: string[]
-  private view: number
-  private status: NovelStatus
+  descriptionImage: URL | string
+  novelName: string
+  category: string[]
+  view: number
+  followed: number
+
+  status: NovelStatus
   public getNovelCode = () => this.novelCode
   public getEpisodes = () => this.episodes
   constructor(novel: NovelSType) {
@@ -33,6 +35,7 @@ export class Novel {
     this.category = novel.category
     this.view = 0
     this.status = NovelStatus.upcoming
+    this.followed = 0
   }
 }
 

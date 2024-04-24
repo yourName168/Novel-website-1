@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/style_loginLight.css">
+</head>
+
+<body>
+    <div class="login-container">
+        <span class="close"><i class="fas fa-times"></i></span>
+        <h1>Đăng nhập</h1>
+        <form id="loginForm">
+            <input type="text" name="username" id="username" placeholder="E-mail" required>
+            <input type="password" name="password" id="password" placeholder="Mật khẩu" required>
+            <label class="checkbox-label"><input type="checkbox" name="remember"> Ghi nhớ</label>
+            <input type="submit" value="Đăng nhập">
+        </form>
+        <div class="bottom-text">
+            <p>Chưa có tài khoản? <a href="./register.html" class="register">Đăng kí ngay</a></p>
+        </div>
+    </div>
+    <script src="../js/login.js" type="module"></script>
+
+</body>
+
+</html>

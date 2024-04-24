@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import {
+  getMeController,
   loginController,
   logoutController,
   regitsterController
@@ -7,8 +8,7 @@ import {
 import {
   accessTokenValidator,
   loginValidator,
-  refreshTokenValidator,
-  regitsterValidator,
+  regitsterValidator
 } from '~/middlewares/users.middlewares'
 import { wrap } from '~/utils/handler'
 import { validate } from '~/utils/validation'
@@ -29,7 +29,7 @@ usersRoute.post('/login', validate(loginValidator), wrap(loginController))
  * ,confirm_password:string}
  */
 
-usersRoute.post('/regitster', validate(regitsterValidator), wrap(regitsterController))
+usersRoute.post('/register', validate(regitsterValidator), wrap(regitsterController))
 /**
  * Description. logout a  user
  * path: /logout
@@ -38,7 +38,7 @@ usersRoute.post('/regitster', validate(regitsterValidator), wrap(regitsterContro
  * Body:{refresh_token:string}
  */
 
-usersRoute.post('/logout', validate(accessTokenValidator), validate(refreshTokenValidator), wrap(logoutController))
+usersRoute.post('/logout', validate(accessTokenValidator),  wrap(logoutController))
 /**
  * Description. verify user
  * path: /verify
@@ -46,14 +46,7 @@ usersRoute.post('/logout', validate(accessTokenValidator), validate(refreshToken
  * Body:{email_verify_token:string}
  */
 
-
-/**
- * Description. update my profile
- * path: /me
- * mothod: PATCH: được sử dụng để update một resouces sẵn và chỉ thay đổi những field được yêu cầu
- * Header:{Authorization:Bearer <access_token>}
- * Body:UserSchema
- */
+usersRoute.get('/get-me',validate(accessTokenValidator),wrap(getMeController))
 
 /**
  * Description. get user profile

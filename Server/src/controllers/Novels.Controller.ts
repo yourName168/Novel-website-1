@@ -3,7 +3,6 @@ import { NovelService } from '~/services/Novels.Services'
 
 export const getListNovelByListIdController = async (req: Request, res: Response, next: NextFunction) => {
   const listNovelId = req.query.listNovelId as string[] | string
-  console.log(listNovelId)
   const result = await NovelService.getListNovelByListId(listNovelId)
   res.send(result)
 }
@@ -14,8 +13,8 @@ export const getChapterOfNovelController = async (req: Request, res: Response, n
   res.send(result)
 }
 export const increaseNovelViewController = async (req: Request, res: Response, next: NextFunction) => {
-  const novelCode = req.body.novelCode as string
-  const result = await NovelService.increaseNovelView(novelCode)
+  const {chapterId,novelCode} = req.body
+  const result = await NovelService.increaseView(chapterId,novelCode)
   res.send(result)
 }
 export const getListNovelSortedByViewController = async (req: Request, res: Response, next: NextFunction) => {
@@ -49,6 +48,6 @@ export const getNextChapterController = async (req: Request, res: Response, next
   res.send(result)
 }
 export const updateEpisodesController = async (req: Request, res: Response, next: NextFunction) => {
-  const result = await NovelService.updateEpisodes()
+  const result = await NovelService.updateNovelStatus()
   res.send(result)
 }

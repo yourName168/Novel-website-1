@@ -5,7 +5,6 @@ class novelService {
   getListNovelByListId = async (listNovelId?: string[] | string) => {
     if (!listNovelId) {
       const result = await databaseService.getListNovel.find({}).toArray()
-      console.log(123)
       return result
     } else {
       const result: Novel[] = []
@@ -25,7 +24,6 @@ class novelService {
           })
         )
       }
-      console.log(result)
       return result
     }
   }
@@ -34,11 +32,36 @@ class novelService {
     const result = await databaseService.NovelDB.collection(`${novelCode}`).find({}).toArray()
     return result
   }
-  increaseNovelView = async (novelCode: string) => {
-    const collection = databaseService.getListNovel
-    const result = await collection.updateOne({ novelCode }, { $inc: { view: 1 } })
-    return result
+  increaseView = async (chapterId: string, novelCode: string) => {
+
+    const novel = await databaseService.getListNovel.findOne({ novelCode });
+    const categories = novel?.category || [];
+
+    // Increment view count for each category
+    const categoryUpdates = categories.map(async (category) => {
+      await databaseService.getCategory.updateOne(
+        { categoryName: category },
+        { $inc: { view: 1 } }
+      );
+    });
+
+    // Increment view counts for novel and chapter
+    const novelUpdate = databaseService.getListNovel.updateOne(
+      {novelCode:novelCode},
+      { $inc: { view: 1 } }
+    );
+    const chapterUpdate = databaseService.NovelDB.collection(novelCode).updateOne(
+      { _id: new ObjectId(chapterId) },
+      { $inc: { view: 1 } }
+    );
+
+    // Wait for all updates to complete
+    await Promise.all([...categoryUpdates, novelUpdate, chapterUpdate]);
+
+    return { success: true };
   }
+
+
   getListNovelSortedByView = async () => {
     const result = await databaseService.getListNovel.find({}).sort({ view: -1 }).toArray()
     return result
@@ -53,7 +76,6 @@ class novelService {
   }
   getChapterById = async (chapterId: string, novelCode: string) => {
     const result = await databaseService.NovelDB.collection(`${novelCode}`).findOne({ _id: new ObjectId(chapterId) })
-    console.log(result)
     return result
   }
   getPreviousChapter = async (chapterId: string, novelCode: string) => {
@@ -84,17 +106,19 @@ class novelService {
       }
     }
   }
-  updateEpisodes = async () => {
-    const listNovel = await databaseService.getListNovel.find({}).toArray()
-    for (let i = 0; i < listNovel.length; i++) {
-      const novel = listNovel[i]
-      const novelCode = novel.novelCode
-      const chapters = await databaseService.NovelDB.collection(`${novelCode}`).find({}).toArray()
-      await databaseService.getListNovel.updateOne({ novelCode }, { $unset: { Episodes: "" } })
-    }
-    return {
-      message: 'Update episodes successfully'
-    }
+  updateNovelStatus = async () => {
+    const listNovel = await databaseService.getListNovel.find().toArray()
+    listNovel.forEach(async (novel) => {
+      const { novelCode, episodes, _id } = novel
+      if (episodes > 0) {
+        await databaseService.getListNovel.updateOne({ _id },
+          {
+            $set: { followed: 0 }
+          }
+        )
+      }
+    })
+    return "update successfully!"
   }
 }
 

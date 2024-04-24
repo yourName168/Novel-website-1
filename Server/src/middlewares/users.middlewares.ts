@@ -1,11 +1,9 @@
 import dotenv from 'dotenv'
-import { NextFunction, Request, Response } from 'express'
 import { checkSchema } from 'express-validator'
 import { JsonWebTokenError } from 'jsonwebtoken'
 import HTTP_STATUS from '~/constants/httpStatus'
 import { USERS_MESSAGE } from '~/constants/messages'
 import { ErrorWithStatus } from '~/models/Errors'
-import { TokenPayload } from '~/models/requests/User.request'
 import User from '~/models/schemas/Users.Schema'
 import { databaseService } from '~/services/database.services'
 import { hashPassword } from '../utils/cryto'
@@ -114,12 +112,11 @@ export const regitsterValidator = checkSchema(
 export const accessTokenValidator = checkSchema(
   {
     Authorization: {
-      // notEmpty: {
-      //   errorMessage: USERS_MESSAGE.ACCESS_TOKEN_IS_REQUIRED
-      // },
       custom: {
         options: async (values, { req }) => {
+          console.log(1)
           const access_token = values.split(' ')[1]
+          console.log(access_token)
           if (access_token === '') {
             throw new ErrorWithStatus({
               message: USERS_MESSAGE.ACCESS_TOKEN_IS_REQUIRED,
@@ -127,6 +124,7 @@ export const accessTokenValidator = checkSchema(
             })
           }
           const decoded_authorizarion = await verifyToken({ token: access_token, secretOrPublickey: accessTokenSecret })
+          console.log("decoded_authorization",decoded_authorizarion)
           if (decoded_authorizarion === null) {
             throw new Error(USERS_MESSAGE.ACCESS_TOKEN_IS_INVALID)
           }

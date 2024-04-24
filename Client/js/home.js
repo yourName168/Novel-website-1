@@ -1,6 +1,7 @@
 import { renderAllCategory, renderTopCategoryView } from './category.js';
 import { renderTopViewNovel, slideAction } from './topViewNovel.js';
 const listNovelSelector = document.querySelector('.list-novel-new');
+
 const getQUeryString = (name) => {
     const search = window.location.search;
     const searchParams = new URLSearchParams(search);
@@ -9,8 +10,8 @@ const getQUeryString = (name) => {
 
 const fetchData = async (listId) => {
     let queryRequest = "";
-    if(listId !== null){
-        queryRequest=listId.split(',').map((id) => `${id}`).join("&listNovelId=");
+    if (listId !== null) {
+        queryRequest = listId.split(',').map((id) => `${id}`).join("&listNovelId=");
     }
     const response = await fetch(`http://193.203.160.126:3535/novels/get-list-novel-by-list-id?listNovelId=${queryRequest}`, {
         method: "GET"
@@ -21,6 +22,21 @@ const fetchData = async (listId) => {
 const renderNovel = (data) => {
     // Iterate over each novel in the data
     data.forEach(novel => {
+        let status = ""
+        if (novel.status === 0) {
+            status = "sắp ra mắt"
+        }
+        if (novel.status === 1) {
+            status = "đang phát hành"
+        }
+        if (novel.status === 2) {
+            status = "đã hoàn thành"
+        }
+        let listCategory = ""
+        novel.category.forEach(category => {
+            listCategory += `<a href="#">${category}</a>`
+        });
+        console.log(novel)
         // Create HTML for each novel
         const novelHTML = `
             <div class="item-novel-new">
@@ -30,11 +46,11 @@ const renderNovel = (data) => {
                         <div class="desc-in">
                             <div class="chap item">
                                 <i class="fa-regular fa-heart"></i>
-                                <span>1</span>
+                                <span>${novel.episodes} chapter</span>
                             </div>
                             <div class="view item">
                                 <i class="fa-regular fa-heart"></i>
-                                <span>${novel.view}</span>
+                                <span>${novel.view} lượt xem</span>
                             </div>
                         </div>
                     </div>
@@ -43,11 +59,11 @@ const renderNovel = (data) => {
                         <div class="desc">
                             <div class="chap item">
                                 <i class="fa-regular fa-heart"></i>
-                                <span>${novel.theLastChapter}</span>
+                                <span>${novel.followed} người theo dõi</span>
                             </div>
                             <div class="view item">
                                 <i class="fa-regular fa-heart"></i>
-                                <span>${novel.updateTime}</span>
+                                <span>${status}</span>
                             </div>
                         </div>
                     </div>

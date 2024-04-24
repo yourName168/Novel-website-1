@@ -14,6 +14,7 @@ const getQueryParameter = (name) => {
 let chapterId = getQueryParameter('chapterId');
 let novelCode = getQueryParameter('novelCode');
 
+
 const getChapter = async (chapterId, novelCode) => {
     const response = await fetch(`http://193.203.160.126:3535/novels/get-chapter?chapterId=${chapterId}&novelCode=${novelCode}`, {
         method: "GET"
@@ -47,9 +48,30 @@ const renderChapter = async (chapter) => {
     await renderAllCategory();
     await renderContent(chapter);
 }
+const increaseView = async (chapterId, novelCode) => {
+    try {
+        const response = await fetch(`http://localhost:3535/novels/increase-view`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                chapterId: chapterId,
+                novelCode: novelCode
+            })
+        });
+
+        return await response.json();
+    } catch (error) {
+        console.error("Error in increaseView function:", error);
+        // Handle error appropriately, like throwing it or returning an error object
+        throw error;
+    }
+};
 
 const loadChapter = async (chapterId, novelCode) => {
-    console.log(1)
+    console.log(chapterId, novelCode)
+    await increaseView(chapterId, novelCode)
     const chapter = await getChapter(chapterId, novelCode);
     renderChapter(chapter);
 }

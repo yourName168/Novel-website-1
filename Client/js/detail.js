@@ -30,11 +30,8 @@ const renderNovel = async () => {
     await renderTopViewNovel();
     const novelId = getQUeryString('id');
     const novel = (await getNovel(novelId))[0]
-    console.log(novel)
     const novelCode = novel.novelCode;
     const listChapter = await getListChapterOfNovel(novelCode);
-    console.log(listChapter)
-    const novelStatus = novel.status;
     let status = ""
     if (novel.status === 0) {
         status = "sắp ra mắt"
@@ -84,10 +81,19 @@ const renderNovel = async () => {
     bannerSelector.innerHTML += bannerHTML;
 
     listChapter.forEach(chapter => {
+        const date = new Date(chapter.updateAt);
+
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0'); // Thêm số 0 ở đầu nếu tháng chỉ có 1 chữ số
+        const day = String(date.getDate()).padStart(2, '0'); // Thêm số 0 ở đầu nếu ngày chỉ có 1 chữ số
+        const hours = String(date.getHours()).padStart(2, '0'); // Thêm số 0 ở đầu nếu giờ chỉ có 1 chữ số
+        const minutes = String(date.getMinutes()).padStart(2, '0'); // Thêm số 0 ở đầu nếu phút chỉ có 1 chữ số
+        const seconds = String(date.getSeconds()).padStart(2, '0'); // Thêm số 0 ở đầu nếu giây chỉ có 1 chữ số
+        const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
         const tableBodyHTML = `
         <tr>
             <td>${chapter.chapterName}</td>
-            <td>${chapter.updateTime}</td>
+            <td>${formattedDate}</td>
             <td>${chapter.view}</td>
             <td><a href="./read.html?chapterId=${chapter._id}&novelCode=${novelCode}
             ">Đọc</a></td>
@@ -98,5 +104,6 @@ const renderNovel = async () => {
 
 renderNovel()
     .then(() => {
-    console.log('Rendered')}
-);
+        console.log('Rendered')
+    }
+    );
