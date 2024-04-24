@@ -32,13 +32,59 @@
 </head>
 
 <body>
+    <div id="light->dark">
+        <style>
+            #header .inner-header-bottom .logo p {
+                color: var(--black);
+            }
+
+            #header .inner-header-bottom .search {
+                background-color: var(--black);
+            }
+
+            section {
+                background: #1c1e1f;
+            }
+
+            section .content .list-novel-new {
+                background-color: #17191A;
+            }
+
+            section .content h3 {
+                color: var(--while);
+            }
+
+            section .content .item-novel-new h2,
+            section .item-novel-new .in4 .desc .item,
+            section aside .top-category h2,
+            section aside .top-view h2.category-list,
+            section aside .top-view .view-item a,
+            section aside .top-view .view-item .content-novel .ct-in4 .item span,
+            .fa-heart:before {
+                color: var(--while);
+
+            }
+
+            section aside .category-list,
+            section aside .top-view .view-list {
+                background-color: #181a1b;
+            }
+
+
+        </style>
+    </div>
+
     <header id="header">
         <div class="header-top">
             <div class="container">
                 <div class="row">
                     <div class="inner-header-top">
                         <a class="rules">Điều khoản sử dụng</a>
+                        
                         <div class="login-imp">
+                            <div class="dark-mode">
+                                <i class="fa-solid fa-moon"></i>
+                            </div>
                             <div class="logout-after">
                                 <a href="" class="logout">Đăng xuất</a>
                                 <p class="hello_User">Xin chào Lê Trung Hiếu</p>
@@ -83,14 +129,13 @@
                                 </ul>
                                 <i class="fa-solid fa-angle-down"></i>
                             </li>
-                            <li class="translation_group">Nhóm dịch
-                                <i class="fa-solid fa-angle-down"></i>
-
-                            </li>
+                            
                             <li class="rank">Xếp hạng
                                 <i class="fa-solid fa-angle-down"></i>
                             </li>
-                            <li class="history"><a href="#">Lịch sử</a></li>
+                            <li class="history"><a href="#">Yêu thích</a></li>
+                            <li class="translation_group">Lịch sử
+                            </li>
                         </ul>
                         <div class="menu-icon">
                             <i class="fa-solid fa-bars"></i>
