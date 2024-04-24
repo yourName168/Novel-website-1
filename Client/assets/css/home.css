@@ -199,6 +199,11 @@ section {
     top: 73px;
 }
 
+/* .dark {
+    color: var(--while) !important;
+    background-color: #1C1E1F !important;
+} */
+
 section .inner-section {
     display: flex;
     justify-content: space-between;
