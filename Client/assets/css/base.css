@@ -49,10 +49,14 @@ html {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
 }
 
-.header-top .inner-header-top .login {
+.header-top .inner-header-top .login-imp .logout-after {
+    display: none;
+}
+
+.header-top .inner-header-top .login,
+.header-top .inner-header-top .logout {
     color: var(--while);
     margin-right: 20px;
     font-weight: 700;
