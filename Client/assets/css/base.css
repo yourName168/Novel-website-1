@@ -323,7 +323,7 @@ section aside .top-view .view-item .main-novel .sub-novel {
 section aside .top-view .view-item .main-novel .img img {
     width: 100%;
     border-radius: 5px;
-
+    aspect-ratio: 2 / 3;
 }
 
 section aside .top-view .view-item .main-novel .content-novel {
