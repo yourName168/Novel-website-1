@@ -118,10 +118,9 @@ html {
 
 #header .inner-header-bottom .logo p {
     color: var(--while);
+    font-weight: 800;
 }
-#header .inner-header-bottom .logo p.dark {
-    color: var(--black);
-}
+
 #header .inner-header-bottom .logo img {
     width: 35px;
     height: 35px;
@@ -166,7 +165,7 @@ html {
     /* Màu viền */
     background-color: #fff;
     /* Màu nền */
-    padding: 5px 2px 5px 30px;
+    padding: 0px 2px 0px 30px;
     /* Khoảng cách từ viền đến nội dung trong ô tìm kiếm */
     display: inline-flex;
     /* Để phần tử có thể thay đổi kích thước theo nội dung bên trong */
@@ -179,7 +178,8 @@ html {
     /* Loại bỏ đường viền khi focus */
     width: calc(100% - 20px);
     /* Độ rộng của input là 100% trừ đi kích thước của icon và khoảng cách */
-    padding: 0;
+    padding: 5px 0;
+    border-radius: 5px;
     /* Loại bỏ khoảng cách giữa input và border */
     background-color: transparent;
     /* Background trong suốt */
@@ -373,6 +373,7 @@ section aside .top-view .view-list {
     background: var(--while);
     padding: 15px;
     padding-bottom: 0;
+    border-radius: 6px;
 }
 
 section aside .top-view .view-item .content-novel .ct-in4 .xem_ngay {

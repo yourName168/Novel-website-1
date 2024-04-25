@@ -9,7 +9,7 @@ body {
     height: 100vh;
 }
 .registration-container {
-    background-color: #161515000;
+    background-color: #161515;
     padding: 40px;
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
@@ -39,7 +39,7 @@ body {
     width: calc(100% - 0px);
     padding: 12px;
     margin: 8px 0;
-    background-color: #161515000;
+    background-color: #161515;
     box-sizing: border-box;
     border: 1px solid #187d8b; 
     border-radius: 25px;
@@ -63,7 +63,7 @@ body {
 .registration-container input[type="tel"]:not(:placeholder-shown),
 .registration-container input[type="password"]:not(:placeholder-shown){
     background-color: rgb(232, 240, 254);
-    color: #161515000;
+    color: #161515;
 } 
 
 .registration-container input[type="submit"] {
