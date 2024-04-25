@@ -23,6 +23,7 @@ const renderNovel = (data) => {
     data.forEach(novel => {
         // Create HTML for each novel
         const novelHTML = `
+            <div class="t01"> 
             <div class="item-novel-new col-xl-3 col-md-4 col-6">
                 <a href="./detail.html?id=${novel._id}">
                     <div class="image-container">
@@ -52,6 +53,7 @@ const renderNovel = (data) => {
                         </div>
                     </div>
                 </a>
+            </div>
             </div>
         `;
         // Append the novel HTML to the list
