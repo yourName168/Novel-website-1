@@ -538,12 +538,11 @@ footer {
 
     section aside .top-view .view-item a {
         top: 305px;
-        left: 30px;
         font-size: 14px;
     }
 
     section aside .top-view .view-item a {
-        top: 90%;
+        top: 70%;
     }
 
     .t01 {
@@ -552,13 +551,28 @@ footer {
 }
 
 
-@media (max-width: 576px) {
+@media (max-width: 575.98px) {
     .alignall {
         flex-direction: column;
     }
 
     .ft_col {
         width: 100% !important;
+    }
+
+    section aside .top-view .view-item a {
+        top: 58%;
+        font-size: 12px;
+        margin-left: auto;
+        margin-right: auto;
+
+    }
+}
+
+
+@media (max-width: 400px) {
+    section aside .top-view .view-item a {
+        top: 54%;
     }
 }
 
