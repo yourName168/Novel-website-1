@@ -26,6 +26,10 @@ main .bar {
 main .bar li {
     cursor: pointer;
 }
+
+.kix-page-paginated {
+    outline: none !important;
+}
 footer {
     position: relative;
     top: 73px;

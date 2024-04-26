@@ -153,6 +153,7 @@ section .content table th {
 section .content table td {
     border-top: 1px solid #e3e3e3;        
     padding: 20px 0;
+    font-weight: 600;
 }
 
 section .content table td :first-child  {
@@ -177,7 +178,8 @@ section table tfoot .more {
 
 section .content table a {
     color: #2f2d2d;
-    font-size: 12px;
+    font-size: 16px;
+    font-weight: 600;
 }
 
 section .content table tr:last-child td button {
