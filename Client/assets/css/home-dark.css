@@ -417,6 +417,43 @@ section aside .top-view .view-item .content-novel .ct-in4 .xem_ngay {
     width: 80%;
 }
 
+
+/* CSS PHAN TRANG  */
+.listPage {
+    padding: 10px;
+    text-align: center;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+.listPage li {
+    font-size: 12px;
+    font-weight: 700;
+    margin: 0 4px;
+    padding: 0 12px;
+    line-height: 30px;
+    color: #909090;
+    background: #181A1B;
+    border: solid 1px #909090;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.listPage .active {
+    background: #156d79;
+    border: solid 1px #17998c;
+    color: #fff;
+}
+.listPage li:hover {
+    background: #156d79;
+    border: solid -110px #17998c;
+    color: #fff;
+}
+
+/* CSS PHAN TRANG  */
+
+
 /* END SECTION  */
 
 
@@ -604,7 +641,8 @@ section .content .item-novel-new h2,
 span,
 section .item-novel-new .in4 .desc .chap,
 section .category-list a .category-item span,
-section aside .top-view .view-item a {
+section aside .top-view .view-item a,
+section aside .top-view .view-item .content-novel .ct-in4 .item span {
     color: white;
 }
 
@@ -622,6 +660,9 @@ section aside .top-view .view-list,
     border: 1px solid #535050;
 }
 
-
+section aside .top-view .view-item .content-novel .ct-in4 .xem_ngay {
+    border: 1px solid var(--bg_main);
+    background-color: #1c1e1f;
+}
 
 /* GHI ĐÈ DARK MODE  */

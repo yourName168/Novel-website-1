@@ -9,8 +9,8 @@ const getQUeryString = (name) => {
 
 const fetchData = async (listId) => {
     let queryRequest = "";
-    if(listId !== null){
-        queryRequest=listId.split(',').map((id) => `${id}`).join("&listNovelId=");
+    if (listId !== null) {
+        queryRequest = listId.split(',').map((id) => `${id}`).join("&listNovelId=");
     }
     const response = await fetch(`http://193.203.160.126:3535/novels/get-list-novel-by-list-id?listNovelId=${queryRequest}`, {
         method: "GET"
@@ -70,5 +70,59 @@ const render = async () => {
     await renderAllCategory();
 }
 render().then(() => {
-    console.log('Rendered');
+    // console.log('Rendered');
+    let thisPage = 1;
+    let limit = 12;
+    let list = document.querySelectorAll('.t01');
+    console.log(list);
+
+    function loadItem() {
+        let beginGet = limit * (thisPage - 1);
+        let endGet = limit * thisPage - 1;
+        list.forEach((item, key) => {
+            if (key >= beginGet && key <= endGet) {
+                item.style.display = 'block';
+            } else {
+                item.style.display = 'none';
+            }
+        })
+        listPage();
+    }
+    loadItem();
+    function listPage() {
+        let count = Math.ceil(list.length / limit);
+        console.log(count);
+        document.querySelector('.listPage').innerHTML = '';
+
+        if (thisPage != 1) {
+            let prev = document.createElement('li');
+            prev.innerText = '<';
+            prev.setAttribute('onclick', "changePage(" + (thisPage - 1) + ")");
+            document.querySelector('.listPage').appendChild(prev);
+        }
+        for (let i = 1; i <= count; i++) {
+            let newPage = document.createElement('li');
+            newPage.innerText = i;
+            if (i == thisPage) {
+                newPage.classList.add('active');
+            }
+            newPage.setAttribute('onclick', "changePage(" + i + ")");
+            document.querySelector('.listPage').appendChild(newPage);
+        }
+
+        if (thisPage != count) {
+            let next = document.createElement('li');
+            next.innerText = '>';
+            next.setAttribute('onclick', "changePage(" + (thisPage + 1) + ")");
+            document.querySelector('.listPage').appendChild(next);
+
+        }
+    }
+    window.changePage = function(i) {
+        thisPage = i;
+        console.log(thisPage);
+        loadItem();
+    }
 });
+
+

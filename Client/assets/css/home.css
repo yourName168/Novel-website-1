@@ -330,52 +330,6 @@ section .item-novel-new .in4 .desc .view {
     margin-right: 10%;
 }
 
-section .content nav {
-    margin-top: 15px;
-    margin-bottom: 15px;
-}
-
-section .content nav ul {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-section .content nav ul li {
-    padding: 0px 12px;
-    background: var(--while);
-    border: solid 1px #e3e3e3;
-    margin: 0 4px;
-    line-height: 30px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: 700;
-
-}
-
-section .content nav ul li:hover {
-    background: #156d79;
-    border: solid 1px #17998c;
-}
-
-section .content nav ul li:hover a {
-    color: #fff;
-}
-
-section .content nav ul .f-li {
-    background: #156d79;
-    border: solid 1px #17998c;
-}
-
-section .content nav ul li .f-a {
-    color: #fff;
-
-}
-
-section .content nav ul li a {
-    color: #909090;
-    font-size: 12px;
-}
 
 section .content h3 {
     font-weight: 900;
@@ -416,6 +370,43 @@ section aside .top-view .view-item .content-novel .ct-in4 .xem_ngay {
     margin-right: auto;
     width: 80%;
 }
+
+/* CSS PHAN TRANG  */
+.listPage {
+    padding: 10px;
+    text-align: center;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+.listPage li {
+    font-size: 12px;
+    font-weight: 700;
+    margin: 0 4px;
+    padding: 0 12px;
+    line-height: 30px;
+    color: #909090;
+    background: #fff;
+    border: solid 1px #f0f0f0;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.listPage .active {
+    background: #156d79;
+    border: solid 1px #17998c;
+    color: #fff;
+}
+
+.listPage li:hover {
+    background: #156d79;
+    border: solid -110px #17998c;
+    color: #fff;
+}
+
+/* CSS PHAN TRANG  */
+
 
 /* END SECTION  */
 
@@ -534,6 +525,7 @@ footer {
     section .content .list-novel-new .item-novel-new img {
         width: 100%;
         height: auto;
+        aspect-ratio: 2 / 3;
     }
 
     .col-6 {
