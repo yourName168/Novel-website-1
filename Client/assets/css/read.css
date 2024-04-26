@@ -21,6 +21,7 @@ main .bar {
     margin-left: 10%;
     margin-right: 10%;
     font-size: 24px;
+    position: relative;
 }
 
 main .bar li {
@@ -35,6 +36,41 @@ footer {
     top: 73px;
 }
 
+
+main .bar .list-chapter ul {
+    /* display: none; */
+    position: absolute;
+    top: 46px;
+    background-color: #DFDFDF;
+    color: white;
+    max-width: 1200px;
+    width: 100%;
+    border-radius: 6px;
+}
+
+main .bar .list-chapter ul li {
+    padding: 15px 10px;
+    border-bottom: 1px solid #d8d5d5;
+    display: flex;
+    align-items: center;
+    transition: all 0.1s ease-in;
+}
+
+main .bar .list-chapter ul li:hover {
+    background-color: var(--bg_main);
+}
+
+main .bar .list-chapter ul li:hover a {
+    color: var(--while);
+} 
+
+
+main .bar .list-chapter ul li a {
+    color: #181a1b;
+    font-size: 12px;
+    text-transform: capitalize;
+    text-decoration: solid;
+}
 @media (max-width: 1200px) {
     main, 
     footer {

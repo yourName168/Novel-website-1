@@ -72,7 +72,7 @@ const render = async () => {
 render().then(() => {
     // console.log('Rendered');
     let thisPage = 1;
-    let limit = 12;
+    let limit = 16;
     let list = document.querySelectorAll('.t01');
     console.log(list);
 

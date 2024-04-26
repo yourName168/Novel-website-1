@@ -141,16 +141,6 @@ html {
     transition: all 0.1s ease-out;
 }
 
-/* #header .inner-header-bottom .menu .category-list li {
-    margin-left: 10px;
-    padding: 0 15px;
-    height: 45px;
-    line-height: 45px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.1s ease-out;
-} */
-
 #header .inner-header-bottom .menu li:hover {
     background-color: #0C5B66;
 }
@@ -208,6 +198,46 @@ html {
     font-weight: bold;
 }
 
+header .rank-type {
+    position: absolute;
+    top: 100%;
+    left: -0.7%;
+    width: 100.7%;
+    height: auto;
+    padding: 0;
+    max-height: 80vh;
+    display: none;
+    overflow: hidden;
+}
+
+header .rank-type .list {
+    width: 100%;
+    column-count: 4;
+    column-gap: 10px;
+    position: relative;
+    z-index: 10;
+    background: #e8e8e8f5;
+    box-shadow: 0 0 6px #00000061;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    left: 9px;
+    border-radius: 0 0 12px 12px;
+}
+
+header .rank-type .list li:hover a {
+    color: white !important;
+}
+
+#header .inner-header-bottom .menu .rank:hover .rank-type {
+    display: block;
+}
+
+#header .inner-header-bottom .menu .rank .list li {
+    width: 100% !important;
+    margin-left: 0 !important;
+    border-radius: 0 0 12px 12px;
+}
 /* END CSS HEADER-BOTTOM  */
 
 
@@ -533,7 +563,8 @@ header .category-list .list li {
 
 }
 
-header .category-list .list li a {
+header .category-list .list li a,
+header .rank-type .list li a {
     color: black !important;
     font-size: 12px;
 
