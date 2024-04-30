@@ -10,7 +10,7 @@ const renderTopViewNovel = async () => {
     const novels = await fetchData();
     let count = 0; // Biến đếm số lượng truyện đã thêm
     novels.forEach(novel => {
-        if (count < 10) { // Kiểm tra xem đã đủ 10 truyện chưa
+        if (count < 5) { // Kiểm tra xem đã đủ 10 truyện chưa
             const novelHTML = `
                 <div class="view-item">
                     <a href="#" class="name">${novel.novelName}</a>
