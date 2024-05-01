@@ -95,7 +95,7 @@ const render = async () => {
     await renderAllCategory();
 }
 const getUserProfile = async (access_token) => {
-    const user = await fetch("http://localhost:3535/users/get-me", {
+    const user = await fetch("http://193.203.160.126:3535/users/get-me", {
         method: "GET",
         headers: {
             "Content-Type": "application/json",

@@ -3,7 +3,7 @@ const registerSelector = document.querySelector('.register')
 
 const loginHandler = async (email, password) => {
     try {
-        const result = await fetch("http://localhost:3535/users/login", {
+        const result = await fetch("http://193.203.160.126:3535/users/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
