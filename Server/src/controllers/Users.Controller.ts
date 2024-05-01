@@ -6,6 +6,7 @@ import {
   RegitsterRequestBody
 } from '~/models/requests/User.request'
 import User from '~/models/schemas/Users.Schema'
+import { NovelService } from '~/services/Novels.Services'
 import usersService from '~/services/Users.Services'
 const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET as string
 
@@ -42,8 +43,15 @@ export const logoutController = async (req: Request, res: Response, next: NextFu
   return res.json(result)
 }
 export const getMeController = async (req: Request, res: Response, next: NextFunction) => {
-  const {user_id}=req.decoded_authorizarion as JwtPayload
+  const { user_id } = req.decoded_authorizarion as JwtPayload
   console.log(req.body)
   const result = await usersService.getMe(user_id)
+  return res.json(result)
+}
+export const followNovelController = async (req: Request, res: Response, next: NextFunction) => {
+  const { user_id } = req.decoded_authorizarion as JwtPayload
+  const {novelId}=req.body
+   await usersService.followNovel(user_id,novelId)
+  const result=await NovelService.increaseFollow(novelId)
   return res.json(result)
 }

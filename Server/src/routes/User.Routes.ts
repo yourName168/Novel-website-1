@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import {
+  followNovelController,
   getMeController,
   loginController,
   logoutController,
@@ -44,6 +45,14 @@ usersRoute.post('/logout', validate(accessTokenValidator),  wrap(logoutControlle
  * path: /verify
  * mothod: POST
  * Body:{email_verify_token:string}
+ */
+usersRoute.post('/follow-novel', validate(accessTokenValidator),  wrap(followNovelController))
+/**
+ * Description. follow the novel
+ * path: /follow-novel
+ * mothod: POST
+ * Body:{novelId:string}
+ * Header:{Authorization:Bearer <access_token>}
  */
 
 usersRoute.get('/get-me',validate(accessTokenValidator),wrap(getMeController))

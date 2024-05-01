@@ -18,7 +18,7 @@ export default class User {
   password: string
   created_at: Date
   updated_at: Date  
-  following:ObjectId[]
+  following:string[]
   constructor(user: UserType) {
     this._id = user._id || new ObjectId()
     this.name = user.name || ' '

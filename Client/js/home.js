@@ -1,6 +1,10 @@
 import { renderAllCategory, renderTopCategoryView } from './category.js';
 import { renderTopViewNovel, slideAction } from './topViewNovel.js';
 const listNovelSelector = document.querySelector('.list-novel-new');
+const access_token = localStorage.getItem("access_token");
+const loginSelector = document.querySelector(".login")
+const logoutSelector = document.querySelector(".logout-after")
+const helloUserSelector = document.querySelector(".hello_user")
 const getQUeryString = (name) => {
     const search = window.location.search;
     const searchParams = new URLSearchParams(search);
@@ -17,10 +21,24 @@ const fetchData = async (listId) => {
     });
     return response.json();
 };
+const getDataOrderBy = async (sortBy) => {
+    let queryRequest = "";
+    if (sortBy === "view") {
+        queryRequest = "get-novel-sorted-by-view"
+    }
+    else if (sortBy === "alphabet") {
+        queryRequest = "get-novel-sorted-alphabetically"
 
+    }
+    const response = await fetch(`http://193.203.160.126:3535/novels/${queryRequest}`, {
+        method: "GET"
+    });
+    return response.json();
+}
 const renderNovel = (data) => {
     // Iterate over each novel in the data
     data.forEach(novel => {
+        console.log(novel)
         // Create HTML for each novel
         const novelHTML = `
             <div class="t01"> 
@@ -31,11 +49,11 @@ const renderNovel = (data) => {
                         <div class="desc-in">
                             <div class="chap item">
                                 <i class="fa-regular fa-heart"></i>
-                                <span>1</span>
+                                <span>${novel.followed} người theo dõi</span>
                             </div>
                             <div class="view item">
                                 <i class="fa-regular fa-heart"></i>
-                                <span>${novel.view}</span>
+                                <span>${novel.view} lượt xem</span>
                             </div>
                         </div>
                     </div>
@@ -44,11 +62,11 @@ const renderNovel = (data) => {
                         <div class="desc">
                             <div class="chap item">
                                 <i class="fa-regular fa-heart"></i>
-                                <span>${novel.theLastChapter}</span>
+                                <span>${novel.authorName}</span>
                             </div>
                             <div class="view item">
                                 <i class="fa-regular fa-heart"></i>
-                                <span>${novel.updateTime}</span>
+                                <span>${novel.episodes} tập</span>
                             </div>
                         </div>
                     </div>
@@ -61,20 +79,52 @@ const renderNovel = (data) => {
     });
 }
 const render = async () => {
-    const listNovelId = getQUeryString('listNovelId');
-    const data = await fetchData(listNovelId);
+    const sortBy = getQUeryString('sort-by')
+    let data
+    if (sortBy) {
+        data = await getDataOrderBy(sortBy)
+    }
+    else {
+        const listNovelId = getQUeryString('listNovelId');
+        data = await fetchData(listNovelId);
+    }
     renderNovel(data);
     await slideAction();
     await renderTopViewNovel();
     await renderTopCategoryView();
     await renderAllCategory();
 }
+const getUserProfile = async (access_token) => {
+    const user = await fetch("http://localhost:3535/users/get-me", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${access_token}`
+        }
+    });
+    return user.json()
+}
+
 render().then(() => {
+    getUserProfile(access_token)
+        .then((res) => {
+            // const 
+            console.log(res)
+            const userName = res.name
+            loginSelector.style.display = 'none'
+            // logoutSelector.style.display=''
+            logoutSelector.style.display = 'flex'
+            helloUserSelector.innerHTML = `Xin chào ${userName}`
+            console.log("get me successfully")
+        })
+        .catch(() => {
+            // console.log("abc")
+        })
     // console.log('Rendered');
     let thisPage = 1;
     let limit = 16;
     let list = document.querySelectorAll('.t01');
-    console.log(list);
+    // console.log(list);
 
     function loadItem() {
         let beginGet = limit * (thisPage - 1);
@@ -118,7 +168,7 @@ render().then(() => {
 
         }
     }
-    window.changePage = function(i) {
+    window.changePage = function (i) {
         thisPage = i;
         console.log(thisPage);
         loadItem();

@@ -110,6 +110,13 @@ class UsersService {
     )
     return user
   }
+  async followNovel(user_id: string, novelId: string) {
+    const user = await databaseService.users.updateOne(
+      { _id: new ObjectId(user_id) },
+      { $push: { following: novelId } }
+    )
+    return user
+  }
 }
 
 const usersService = new UsersService()

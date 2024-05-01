@@ -12,29 +12,29 @@ const renderTopViewNovel = async () => {
     novels.forEach(novel => {
         if (count < 5) { // Kiểm tra xem đã đủ 10 truyện chưa
             const novelHTML = `
-                <div class="view-item">
-                    <a href="#" class="name">${novel.novelName}</a>
-                    <div class="main-novel">
-                        <div class="sub-novel">
-                            <div class="img">
-                                <img src="${novel.descriptionImage}" alt="">
+            <div class="view-item">
+            <a href="#" class="name">${novel.novelName}</a>
+            <div class="main-novel">
+                <div class="sub-novel">
+                    <div class="img">
+                        <img src="${novel.descriptionImage}" alt="">
+                    </div>
+                    <div class="content-novel">
+                        <div class="ct-in4">
+                            <div class="view item">
+                                <i class="fa-regular fa-heart"></i>
+                                <span>${novel.view} lượt xem</span>
                             </div>
-                            <div class="content-novel">
-                                <div class="ct-in4">
-                                    <div class="view item">
-                                        <i class="fa-regular fa-heart"></i>
-                                        <span>${novel.view}</span>
-                                    </div>
-                                    <div class="chap item">
-                                        <i class="fa-regular fa-heart"></i>
-                                        <span>1</span>
-                                    </div>
-                                    <button class="xem_ngay item">XEM NGAY</button>
-                                </div>
+                            <div class="chap item">
+                                <i class="fa-regular fa-heart"></i>
+                                <span>${novel.followed} theo dõi</span>
                             </div>
+                            <a class="xem_ngay item" href = './detail.html?id=${novel._id}'>XEM NGAY</a>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
             `;
             topViewNovelSelector.innerHTML += novelHTML;
 
@@ -51,6 +51,7 @@ const renderSlide = async () => {
     novels.forEach(novel => {
         if (count < 10) { // Kiểm tra xem đã đủ 5 truyện chưa
             const slideHTML = `
+            <a href="./detail.html?id=${novel._id}">
             <div class="slide slide-1">
                 <div class="image-container">
                     <img src="${novel.descriptionImage}"
@@ -61,29 +62,32 @@ const renderSlide = async () => {
                     <div class="in4">
                         <div class="chap item">
                             <i class="fa-regular fa-heart"></i>
-                            <span>Chap 1</span>
+                            <span>${novel.episodes} tập</span>
                         </div>
                         <div class="view item">
                             <i class="fa-regular fa-heart"></i>
-                            <span>${novel.view} luot xem</span>
+                            <span>${novel.view} lượt xem</span>
                         </div>
                         <div class="calendar item">
                             <i class="fa-regular fa-heart"></i>
-                            <span>12/02/24</span>
+                            <span>${novel.authorName}</span>
                         </div>
                         <div class="follow item">
                             <i class="fa-regular fa-heart"></i>
-                            <span>123 theo doi</span>
+                            <span>${novel.followed} người theo dõi</span>
                         </div>
                     </div>
                 </div>
             </div>
+            </a>
+
+            
             `;
             slideSelector.innerHTML += slideHTML;
         }
     });
 }
-const slideAction =async () => {
+const slideAction = async () => {
     await renderSlide();
     const sliderContainer = document.querySelector('.slider-container');
     const slider = document.querySelector('.slider');

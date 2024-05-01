@@ -47,7 +47,7 @@ class novelService {
 
     // Increment view counts for novel and chapter
     const novelUpdate = databaseService.getListNovel.updateOne(
-      {novelCode:novelCode},
+      { novelCode: novelCode },
       { $inc: { view: 1 } }
     );
     const chapterUpdate = databaseService.NovelDB.collection(novelCode).updateOne(
@@ -106,6 +106,12 @@ class novelService {
       }
     }
   }
+  increaseFollow = async (novelId: string) => {
+    const novel = await databaseService.getListNovel.updateOne({ _id: new ObjectId(novelId) }, {
+      $inc: { followed: 1 }
+    })
+    return novel
+  }
   updateNovelStatus = async () => {
     const listNovel = await databaseService.getListNovel.find().toArray()
     listNovel.forEach(async (novel) => {
@@ -120,6 +126,7 @@ class novelService {
     })
     return "update successfully!"
   }
+
 }
 
 export const NovelService = new novelService()
