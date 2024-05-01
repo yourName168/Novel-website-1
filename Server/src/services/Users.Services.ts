@@ -117,6 +117,14 @@ class UsersService {
     )
     return user
   }
+  async unFollowNovel(user_id: string, novelId: string) {
+    const user = await databaseService.users.updateOne(
+      { _id: new ObjectId(user_id) },
+      { $pull: { following: novelId } } // Sử dụng $pull để loại bỏ phần tử cụ thể từ mảng
+    );
+    return user;
+  }
+
 }
 
 const usersService = new UsersService()

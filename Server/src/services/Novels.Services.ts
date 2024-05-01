@@ -112,6 +112,13 @@ class novelService {
     })
     return novel
   }
+  decreaseFollow = async (novelId: string) => {
+    const novel = await databaseService.getListNovel.updateOne(
+      { _id: new ObjectId(novelId) },
+      { $inc: { followed: -1 } } // Sử dụng $inc để giảm giá trị của trường followed đi 1
+    );
+    return novel;
+  }
   updateNovelStatus = async () => {
     const listNovel = await databaseService.getListNovel.find().toArray()
     listNovel.forEach(async (novel) => {

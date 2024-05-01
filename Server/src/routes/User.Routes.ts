@@ -4,7 +4,8 @@ import {
   getMeController,
   loginController,
   logoutController,
-  regitsterController
+  regitsterController,
+  unFollowNovelController
 } from '~/controllers/Users.Controller'
 import {
   accessTokenValidator,
@@ -47,6 +48,14 @@ usersRoute.post('/logout', validate(accessTokenValidator),  wrap(logoutControlle
  * Body:{email_verify_token:string}
  */
 usersRoute.post('/follow-novel', validate(accessTokenValidator),  wrap(followNovelController))
+/**
+ * Description. follow the novel
+ * path: /follow-novel
+ * mothod: POST
+ * Body:{novelId:string}
+ * Header:{Authorization:Bearer <access_token>}
+ */
+usersRoute.post('/unfollow-novel', validate(accessTokenValidator),  wrap(unFollowNovelController))
 /**
  * Description. follow the novel
  * path: /follow-novel

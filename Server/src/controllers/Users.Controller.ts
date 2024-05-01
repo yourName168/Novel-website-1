@@ -55,3 +55,10 @@ export const followNovelController = async (req: Request, res: Response, next: N
   const result=await NovelService.increaseFollow(novelId)
   return res.json(result)
 }
+export const unFollowNovelController = async (req: Request, res: Response, next: NextFunction) => {
+  const { user_id } = req.decoded_authorizarion as JwtPayload
+  const {novelId}=req.body
+   await usersService.unFollowNovel(user_id,novelId)
+  const result=await NovelService.decreaseFollow(novelId)
+  return res.json(result)
+}
