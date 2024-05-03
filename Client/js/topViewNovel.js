@@ -1,11 +1,6 @@
 const topViewNovelSelector = document.querySelector('.view-list');
 const slideSelector = document.querySelector('.slider');
-const fetchData = async () => {
-    const response = await fetch("http://193.203.160.126:3535/novels/get-novel-sorted-by-view", {
-        method: "GET"
-    });
-    return response.json();
-};
+import { fetchData } from "./const.js";
 const renderTopViewNovel = async () => {
     const novels = await fetchData();
     let count = 0; // Biến đếm số lượng truyện đã thêm

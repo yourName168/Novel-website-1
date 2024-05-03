@@ -1,31 +1,13 @@
 import { renderAllCategory, renderTopCategoryView } from './category.js';
+import { getUserProfile,fetchData } from './const.js';
 import { renderTopViewNovel } from './topViewNovel.js';
 const listNovelSelector = document.querySelector('.list-novel-new');
 const access_token = localStorage.getItem("access_token");
-const loginSelector = document.querySelector(".login")
-const logoutSelector = document.querySelector(".logout-after")
-const helloUserSelector = document.querySelector(".hello_user")
-const getQUeryString = (name) => {
-    const search = window.location.search;
-    const searchParams = new URLSearchParams(search);
-    return searchParams.get(name);
-}
 
-const fetchData = async (listId) => {
-    let queryRequest = "";
-    if (listId !== null) {
-        queryRequest = listId.map((id) => `${id}`).join("&listNovelId=");
-    }
-    const response = await fetch(`http://193.203.160.126:3535/novels/get-list-novel-by-list-id?listNovelId=${queryRequest}`, {
-        method: "GET"
-    });
-    return response.json();
-};
 
 const renderNovel = (data) => {
     // Iterate over each novel in the data
     data.forEach(novel => {
-        console.log(novel)
         // Create HTML for each novel
         const novelHTML = `
             <div class="t01"> 
@@ -66,55 +48,19 @@ const renderNovel = (data) => {
     });
 }
 const render = async () => {
-    let data
-    try {
-        const userProfile = await getUserProfile(access_token)
-        console.log(userProfile)
-        const { name, following } = userProfile
-        loginSelector.style.display = 'none'
-        // logoutSelector.style.display=''
-        logoutSelector.style.display = 'flex'
-        helloUserSelector.innerHTML = `Xin chào ${name}`
-        data=await fetchData(following)
-        console.log(data)
-        console.log(name)
-        console.log(following)
-    } catch (error) {
-        console.log("fail")
-    }
-
+    const user=await getUserProfile(access_token)
+    const {following}=user
+    const data=await fetchData(following)
     renderNovel(data);
     await renderTopViewNovel();
     await renderTopCategoryView();
     await renderAllCategory();
 }
-const getUserProfile = async (access_token) => {
-    const user = await fetch("http://193.203.160.126:3535/users/get-me", {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${access_token}`
-        }
-    });
-    return user.json()
-}
-
 render().then(() => {
-    // getUserProfile(access_token)
-    //     .then((res) => {
-    //         // const 
-    //         console.log(res)
-           
-    //         console.log("get me successfully")
-    //     })
-    //     .catch(() => {
-    //         // console.log("abc")
-    //     })  
-    // console.log('Rendered');
+ 
     let thisPage = 1;
     let limit = 16;
     let list = document.querySelectorAll('.t01');
-    // console.log(list);
 
     function loadItem() {
         let beginGet = limit * (thisPage - 1);

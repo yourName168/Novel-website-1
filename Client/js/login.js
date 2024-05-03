@@ -1,6 +1,7 @@
 const loginSelector = document.querySelector('.login');
 const registerSelector = document.querySelector('.register')
 
+
 const loginHandler = async (email, password) => {
     try {
         const result = await fetch("http://193.203.160.126:3535/users/login", {
@@ -19,7 +20,7 @@ const loginHandler = async (email, password) => {
     } catch (error) {
         console.error('Error:', error);
     }
-};
+}
 
 document.addEventListener('DOMContentLoaded', function () {
     const form = document.querySelector('form');
@@ -37,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
             localStorage.setItem("access_token", result.result)
             // Lưu token vào localStorage hoặc cookie
             // Chuyển hướng đến trang sau khi đăng nhập thành công
-            window.location.href = "./home.html";
+            window.location.href = "./index.html";
         } else {
             alert('Đăng nhập thất bại! Vui lòng kiểm tra lại thông tin đăng nhập.');
         }

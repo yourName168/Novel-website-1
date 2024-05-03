@@ -1,32 +1,15 @@
 import { renderAllCategory, renderTopCategoryView } from './category.js';
+import { getUserProfile, getNovel, getListChapterOfNovel, getQueryString } from './const.js';
 import { renderTopViewNovel } from './topViewNovel.js';
 
 const access_token = localStorage.getItem("access_token");
-const loginSelector = document.querySelector(".login")
-const logoutSelector = document.querySelector(".logout-after")
-const helloUserSelector = document.querySelector(".hello_user")
 const bannerSelector = document.querySelector('.inner-banner');
 const tableBodySelector = document.querySelector('.table-body');
+const theme = document.querySelector("#theme-link");
 
-const getQueryString = (name) => {
-    const search = window.location.search;
-    const searchParams = new URLSearchParams(search);
-    return searchParams.get(name);
-}
+const presentDarkMode = localStorage.getItem("dark-mode")
+
 const novelId = getQueryString('id');
-const getNovel = async (novelId) => {
-    const response = await fetch(`http://193.203.160.126:3535/novels/get-list-novel-by-list-id?listNovelId=${novelId}`, {
-        method: "GET"
-    });
-    return response.json(); // Assuming response is JSON
-}
-
-const getListChapterOfNovel = async (novelCode) => {
-    const response = await fetch(`http://193.203.160.126:3535/novels/get-chapter-in-novel?novelCode=${novelCode}`, {
-        method: "GET"
-    });
-    return response.json(); // Assuming response is JSON
-}
 
 const renderNovel = async () => {
     await renderAllCategory();
@@ -109,64 +92,15 @@ const renderNovel = async () => {
     });
 }
 
-const getUserProfile = async (access_token) => {
-    const user = await fetch("http://193.203.160.126:3535/users/get-me", {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${access_token}`
-        }
-    });
-    return user.json()
-}
-const followNovel = async (novelId, access_token) => {
-    const result = await fetch("http://193.203.160.126:3535/users/follow-novel", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${access_token}`
-        },
-        body: JSON.stringify({
-            novelId
-        })
-    });
-    return result.json()
-}
-const unfollowNovel = async (novelId, access_token) => {
-    const result = await fetch("http://193.203.160.126:3535/users/unfollow-novel", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${access_token}`
-        },
-        body: JSON.stringify({
-            novelId
-        })
-    });
-    return result.json()
-}
-renderNovel().then(() => {
-
-    getUserProfile(access_token)
-        .then((res) => {
-            console.log(res);
-            const following = res.following;
-            // Đặt biến check để kiểm tra xem novelId có trong danh sách following không
-            const check = following.includes(novelId);
-            if (check) {
-                followButton.style.display = 'none';
-                unfollowButton.style.display = 'block';
-            }
-            const userName = res.name;
-            loginSelector.style.display = 'none';
-            logoutSelector.style.display = 'flex';
-            helloUserSelector.innerHTML = `Xin chào ${userName}`;
-            console.log("get me successfully");
-        })
-        .catch(() => {
-            // Xử lý lỗi nếu có
-        });
-
+renderNovel().then(async () => {
+    const user = await getUserProfile(access_token)
+    const following = user.following;
+    // Đặt biến check để kiểm tra xem novelId có trong danh sách following không
+    const check = following.includes(novelId);
+    if (check) {
+        followButton.style.display = 'none';
+        unfollowButton.style.display = 'block';
+    }
     const followButton = document.querySelector(".follow");
     const unfollowButton = document.querySelector(".unfollow"); // Define unfollow button here
     followButton.addEventListener("click", async () => {
@@ -184,3 +118,22 @@ renderNovel().then(() => {
     .catch((e) => {
         console.log(e)
     })
+
+if (presentDarkMode) {
+    theme.href = "../assets/css/detail-dark.css";
+    // Xử lý khi darkMode là true
+} else {
+    // Xử lý khi darkMode là false
+    theme.href = "../assets/css/detail.css";
+}
+document.addEventListener('darkModeChange', function (event) {
+    const { darkMode } = event.detail;
+    // Thực hiện xử lý dựa trên giá trị darkMode
+    if (darkMode) {
+        theme.href = "../assets/css/detail-dark.css";
+        // Xử lý khi darkMode là true
+    } else {
+        // Xử lý khi darkMode là false
+        theme.href = "../assets/css/detail.css";
+    }
+});

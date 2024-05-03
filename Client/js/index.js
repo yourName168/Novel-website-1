@@ -1,40 +1,9 @@
 import { renderAllCategory, renderTopCategoryView } from './category.js';
+import { fetchData, getDataOrderBy, getQueryString } from './const.js';
 import { renderTopViewNovel, slideAction } from './topViewNovel.js';
 const listNovelSelector = document.querySelector('.list-novel-new');
-const access_token = localStorage.getItem("access_token");
-const loginSelector = document.querySelector(".login")
-const logoutSelector = document.querySelector(".logout-after")
-const helloUserSelector = document.querySelector(".hello_user")
-const getQUeryString = (name) => {
-    const search = window.location.search;
-    const searchParams = new URLSearchParams(search);
-    return searchParams.get(name);
-}
 
-const fetchData = async (listId) => {
-    let queryRequest = "";
-    if (listId !== null) {
-        queryRequest = listId.split(',').map((id) => `${id}`).join("&listNovelId=");
-    }
-    const response = await fetch(`http://193.203.160.126:3535/novels/get-list-novel-by-list-id?listNovelId=${queryRequest}`, {
-        method: "GET"
-    });
-    return response.json();
-};
-const getDataOrderBy = async (sortBy) => {
-    let queryRequest = "";
-    if (sortBy === "view") {
-        queryRequest = "get-novel-sorted-by-view"
-    }
-    else if (sortBy === "alphabet") {
-        queryRequest = "get-novel-sorted-alphabetically"
-
-    }
-    const response = await fetch(`http://193.203.160.126:3535/novels/${queryRequest}`, {
-        method: "GET"
-    });
-    return response.json();
-}
+console.log(123)
 const renderNovel = (data) => {
     // Iterate over each novel in the data
     data.forEach(novel => {
@@ -79,13 +48,13 @@ const renderNovel = (data) => {
     });
 }
 const render = async () => {
-    const sortBy = getQUeryString('sort-by')
+    const sortBy = getQueryString('sort-by')
     let data
     if (sortBy) {
         data = await getDataOrderBy(sortBy)
     }
     else {
-        const listNovelId = getQUeryString('listNovelId');
+        const listNovelId = getQueryString('listNovelId');
         data = await fetchData(listNovelId);
     }
     renderNovel(data);
@@ -94,32 +63,10 @@ const render = async () => {
     await renderTopCategoryView();
     await renderAllCategory();
 }
-const getUserProfile = async (access_token) => {
-    const user = await fetch("http://193.203.160.126:3535/users/get-me", {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${access_token}`
-        }
-    });
-    return user.json()
-}
+
 
 render().then(() => {
-    getUserProfile(access_token)
-        .then((res) => {
-            // const 
-            console.log(res)
-            const userName = res.name
-            loginSelector.style.display = 'none'
-            // logoutSelector.style.display=''
-            logoutSelector.style.display = 'flex'
-            helloUserSelector.innerHTML = `Xin chào ${userName}`
-            console.log("get me successfully")
-        })
-        .catch(() => {
-            // console.log("abc")
-        })
+
     // console.log('Rendered');
     let thisPage = 1;
     let limit = 16;
@@ -172,6 +119,27 @@ render().then(() => {
         thisPage = i;
         console.log(thisPage);
         loadItem();
+    }
+});
+const theme = document.querySelector("#theme-link");    
+
+const presentDarkMode=localStorage.getItem("dark-mode")
+if (presentDarkMode) {
+    theme.href = "../assets/css/home-dark.css";
+    // Xử lý khi darkMode là true
+} else {
+    // Xử lý khi darkMode là false
+    theme.href = "../assets/css/home.css";
+}
+document.addEventListener('darkModeChange', function(event) {
+    const { darkMode } = event.detail;
+    // Thực hiện xử lý dựa trên giá trị darkMode
+    if (darkMode) {
+        theme.href = "../assets/css/home-dark.css";
+        // Xử lý khi darkMode là true
+    } else {
+        // Xử lý khi darkMode là false
+        theme.href = "../assets/css/home.css";
     }
 });
 

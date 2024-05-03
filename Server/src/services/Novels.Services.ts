@@ -27,6 +27,12 @@ class novelService {
       return result
     }
   }
+  searchNovel = async (description: string) => {
+    console.log(description);
+    const result = await databaseService.getListNovel.find({ novelName: { $regex: description } }).toArray();
+    console.log(result);
+    return result;
+}
 
   getAllChapterOfNovel = async (novelCode: string) => {
     const result = await databaseService.NovelDB.collection(`${novelCode}`).find({}).toArray()

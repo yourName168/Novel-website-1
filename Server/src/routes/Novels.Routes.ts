@@ -9,6 +9,7 @@ import {
   getNextChapterController,
   getPreviousChapterController,
   increaseNovelViewController,
+  searchNovelController,
   updateEpisodesController
 } from '~/controllers/Novels.Controller'
 import { wrap } from '~/utils/handler'
@@ -20,6 +21,13 @@ novelRouter.get('/get-list-novel-by-list-id', wrap(getListNovelByListIdControlle
  * path: /get-novel
  * mothod: get
  * Query:{listNovelId?:string[]}
+ */
+novelRouter.post('/search-novel', wrap(searchNovelController))
+/**
+ * Description. seach novel by name
+ * path: /search-novel
+ * mothod: post
+ * body:{description:string}
  */
 novelRouter.get('/get-chapter-in-novel', wrap(getChapterOfNovelController))
 /**

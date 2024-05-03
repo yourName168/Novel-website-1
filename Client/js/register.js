@@ -22,7 +22,6 @@ const registerHandler = async (fullname, email, password, confirm_password) => {
 function validatePassword(password) {
     const minLength = 8;
     const maxLength = 20; // Giả sử độ dài tối đa là 20 ký tự
-
     // Kiểm tra độ dài của mật khẩu
     if (password.length < minLength || password.length > maxLength) {
         return 'Mật khẩu phải chứa từ ' + minLength + ' đến ' + maxLength + ' ký tự.';
@@ -52,7 +51,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const confirm_password = form.elements['confirm_password'].value;
 
         // Kiểm tra mật khẩu có đủ mạnh không
-
 
 
         // Sử dụng hàm validatePassword để kiểm tra mật khẩu

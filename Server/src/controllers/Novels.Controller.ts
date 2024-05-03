@@ -6,6 +6,11 @@ export const getListNovelByListIdController = async (req: Request, res: Response
   const result = await NovelService.getListNovelByListId(listNovelId)
   res.send(result)
 }
+export const searchNovelController = async (req: Request, res: Response, next: NextFunction) => {
+  const {description}=req.body
+  const result = await NovelService.searchNovel(description)
+  res.send(result)
+}
 
 export const getChapterOfNovelController = async (req: Request, res: Response, next: NextFunction) => {
   const novelCode = req.query.novelCode as string
