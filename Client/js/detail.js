@@ -93,10 +93,14 @@ const renderNovel = async () => {
 }
 
 renderNovel().then(async () => {
+
     const user = await getUserProfile(access_token)
-    const following = user.following;
+    let following, check
+    if (user._id) {
+        following = user.following;
+        check = following.includes(novelId);
+    }
     // Đặt biến check để kiểm tra xem novelId có trong danh sách following không
-    const check = following.includes(novelId);
     if (check) {
         followButton.style.display = 'none';
         unfollowButton.style.display = 'block';
@@ -104,9 +108,15 @@ renderNovel().then(async () => {
     const followButton = document.querySelector(".follow");
     const unfollowButton = document.querySelector(".unfollow"); // Define unfollow button here
     followButton.addEventListener("click", async () => {
-        followButton.style.display = 'none';
-        unfollowButton.style.display = 'block';
-        await followNovel(novelId, access_token)
+        if (access_token) {
+
+            followButton.style.display = 'none';
+            unfollowButton.style.display = 'block';
+            await followNovel(novelId, access_token)
+        }
+        else {
+            alert("Hãy đăng nhập để lưu truyện yêu thích")
+        }
     })
     unfollowButton.addEventListener("click", async () => {
         // Toggle the display of unfollow and follow buttons

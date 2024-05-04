@@ -28,10 +28,12 @@ const renderAllCategory = async () => {
     data.forEach(category => {
         const queryRequest = category.novelId.map((id) => `${id}`).join(",");
         const categoryHTML = `
-            <li>
-                <a href="./index.html?listNovelId=${queryRequest}">
-                ${category.categoryName}</a>
-            </li>
+        <a href="./index.html?listNovelId=${queryRequest}">
+            <div class="category-item" style="background-image: url(${category.imgURL})">
+                <span>${category.categoryName}</span>
+            </div>
+        </a>
+    
         `;
         listCategoryOnHeader.innerHTML += categoryHTML;
     });
