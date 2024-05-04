@@ -668,8 +668,9 @@ header .category-list .list li:hover a {
         margin-right: 0;
     }
 
-    
-
+    .dieukhoan {
+        display: none;
+    }
     
 
 }
