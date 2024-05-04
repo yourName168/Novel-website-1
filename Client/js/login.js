@@ -15,7 +15,6 @@ const loginHandler = async (email, password) => {
             })
         });
         const data = await result.json();
-        console.log(data);
         return data; // Trả về dữ liệu từ máy chủ
     } catch (error) {
         console.error('Error:', error);

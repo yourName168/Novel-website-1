@@ -45,7 +45,6 @@ const increaseView = async (chapterId, novelCode) => {
 }
 
 const loadChapter = async (chapterId, novelCode) => {
-    console.log(chapterId, novelCode)
     await increaseView(chapterId, novelCode);
     const chapter = await getChapter(chapterId, novelCode);
     renderChapter(chapter);
@@ -62,7 +61,6 @@ previousChapterSelector.addEventListener('click', async () => {
 });
 nextChapterSelector.addEventListener('click', async () => {
     const nextChapter = await getNextChapter(chapterId, novelCode);
-    console.log(nextChapter)
     if (nextChapter && nextChapter._id) {
         chapterId = nextChapter._id;
         await loadChapter(chapterId, novelCode);
@@ -75,7 +73,6 @@ loadChapter(chapterId, novelCode).then(async () => {
 
     const listChapter = await getListChapterOfNovel(novelCode)
     listChapter.forEach((chapter) => {
-        console.log(chapter)
         const chapterHTML = `
         <li> 
             <a href="./read.html?chapterId=${chapter._id}&novelCode=${chapter.novelCode}">${chapter.chapterName}</a>
@@ -93,7 +90,6 @@ loadChapter(chapterId, novelCode).then(async () => {
             listChapterChildSelector.style.display = "block";
         }
     });
-    console.log('Loaded chapter');
 });
 const theme = document.querySelector("#theme-link");    
 

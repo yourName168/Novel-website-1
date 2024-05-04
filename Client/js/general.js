@@ -19,7 +19,6 @@ darkModeSelector.addEventListener("click", function () {
     const darkModeEvent = new CustomEvent('darkModeChange', { detail: { darkMode: !darkMode } });
     document.dispatchEvent(darkModeEvent);
 
-    console.log(darkMode);
 });
 
 
@@ -27,14 +26,14 @@ darkModeSelector.addEventListener("click", function () {
 getUserProfile(access_token)
     .then((res) => {
         // const 
-        console.log(res)
-        const userName = res.name
-        loginSelector.style.display = 'none'
-        // logoutSelector.style.display=''
-        logoutSelector.style.display = 'flex'
-        helloUserSelector.innerHTML = `Xin chào ${userName}`
-        console.log("get me successfully")
+        if(res._id){
+            const userName = res.name
+            loginSelector.style.display = 'none'
+            // logoutSelector.style.display=''
+            logoutSelector.style.display = 'flex'
+            helloUserSelector.innerHTML = `Xin chào ${userName}`
+        }
     })
     .catch(() => {
-        // console.log("abc")
+        console.log("abc")
     })

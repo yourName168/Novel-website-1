@@ -59,7 +59,6 @@ document.addEventListener('DOMContentLoaded', function () {
         if (validationResult) {
             alert(validationResult);
         } else {
-            console.log("123")
             // Kiểm tra mật khẩu và xác nhận mật khẩu có giống nhau không
             if (password !== confirm_password) {
                 alert('Mật khẩu và xác nhận mật khẩu không giống nhau!');
@@ -68,7 +67,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Gọi hàm registerHandler để gửi yêu cầu đăng ký
             const result = await registerHandler(fullname, email, password, confirm_password);
-            console.log(result)
             if (result && result.err && result.err.email) {
                 alert('Email đã tồn tại!'); // Hiển thị thông báo khi email đã tồn tại
             }

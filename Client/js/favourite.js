@@ -105,7 +105,6 @@ render().then(() => {
     }
     window.changePage = function (i) {
         thisPage = i;
-        console.log(thisPage);
         loadItem();
     }
 });

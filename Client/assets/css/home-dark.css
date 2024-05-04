@@ -632,6 +632,7 @@ section aside .top-view .view-list,
 section aside .top-view .view-item .content-novel .ct-in4 .xem_ngay {
     border: 1px solid var(--bg_main);
     background-color: #1c1e1f;
+    margin-left: 15px;
 }
 
 /* GHI ĐÈ DARK MODE  */
