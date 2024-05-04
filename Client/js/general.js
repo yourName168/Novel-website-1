@@ -10,7 +10,7 @@ import { getUserProfile } from "./const.js";
 
 darkModeSelector.addEventListener("click", function () {
     // Lấy giá trị darkMode từ localStorage và chuyển đổi thành boolean
-    const darkMode = localStorage.getItem("dark-mode") === "true";
+    const darkMode = localStorage.getItem("dark-mode")
 
     // Cập nhật giá trị darkMode trong localStorage
     localStorage.setItem("dark-mode", darkMode ? "false" : "true");

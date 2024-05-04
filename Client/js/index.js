@@ -126,13 +126,7 @@ document.addEventListener("DOMContentLoaded", setupSearch);
 const theme = document.querySelector("#theme-link");    
 
 const presentDarkMode=localStorage.getItem("dark-mode")
-if (presentDarkMode) {
-    theme.href = "../assets/css/home-dark.css";
-    // Xử lý khi darkMode là true
-} else {
-    // Xử lý khi darkMode là false
-    theme.href = "../assets/css/home.css";
-}
+
 document.addEventListener('darkModeChange', function(event) {
     const { darkMode } = event.detail;
     // Thực hiện xử lý dựa trên giá trị darkMode
