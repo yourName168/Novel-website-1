@@ -1,7 +1,7 @@
 import { renderAllCategory, renderTopCategoryView } from './category.js';
 import { getUserProfile, getNovel, getListChapterOfNovel, getQueryString } from './const.js';
 import { renderTopViewNovel } from './topViewNovel.js';
-
+import { setupSearch } from './search.js';
 const access_token = localStorage.getItem("access_token");
 const bannerSelector = document.querySelector('.inner-banner');
 const tableBodySelector = document.querySelector('.table-body');
@@ -118,6 +118,7 @@ renderNovel().then(async () => {
     .catch((e) => {
         console.log(e)
     })
+document.addEventListener("DOMContentLoaded", setupSearch);
 
 if (presentDarkMode) {
     theme.href = "../assets/css/detail-dark.css";

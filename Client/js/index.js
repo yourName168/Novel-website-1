@@ -1,6 +1,7 @@
 import { renderAllCategory, renderTopCategoryView } from './category.js';
 import { fetchData, getDataOrderBy, getQueryString } from './const.js';
 import { renderTopViewNovel, slideAction } from './topViewNovel.js';
+import { setupSearch } from './search.js';
 const listNovelSelector = document.querySelector('.list-novel-new');
 
 console.log(123)
@@ -121,6 +122,7 @@ render().then(() => {
         loadItem();
     }
 });
+document.addEventListener("DOMContentLoaded", setupSearch);
 const theme = document.querySelector("#theme-link");    
 
 const presentDarkMode=localStorage.getItem("dark-mode")

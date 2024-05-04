@@ -7,7 +7,9 @@ export const getListNovelByListIdController = async (req: Request, res: Response
   res.send(result)
 }
 export const searchNovelController = async (req: Request, res: Response, next: NextFunction) => {
+  console.log(req)
   const {description}=req.body
+  // console.log(d)
   const result = await NovelService.searchNovel(description)
   res.send(result)
 }

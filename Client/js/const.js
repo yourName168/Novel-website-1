@@ -55,7 +55,7 @@ export const unfollowNovel = async (novelId, access_token) => {
     return result.json()
 }
 
-export const fetchData = async (listId="") => {
+export const fetchData = async (listId = "") => {
     let queryRequest = "";
     if (listId) {
         queryRequest = listId.split(',').map((id) => `${id}`).join("&listNovelId=");
@@ -108,6 +108,18 @@ export const getPreviousChapter = async (chapterId, novelCode) => {
 export const getNextChapter = async (chapterId, novelCode) => {
     const response = await fetch(`${url}/novels/get-next-chapter?chapterId=${chapterId}&novelCode=${novelCode}`, {
         method: "GET"
+    });
+    return response.json();
+}
+export const searchNovel = async (description) => {
+    const response = await fetch(`http://localhost:3535/novels/search-novel`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            description
+        })
     });
     return response.json();
 }
