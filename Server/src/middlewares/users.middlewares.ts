@@ -114,9 +114,7 @@ export const accessTokenValidator = checkSchema(
     Authorization: {
       custom: {
         options: async (values, { req }) => {
-          console.log(1)
           const access_token = values.split(' ')[1]
-          console.log(access_token)
           if (access_token === '') {
             throw new ErrorWithStatus({
               message: USERS_MESSAGE.ACCESS_TOKEN_IS_REQUIRED,
@@ -124,7 +122,6 @@ export const accessTokenValidator = checkSchema(
             })
           }
           const decoded_authorizarion = await verifyToken({ token: access_token, secretOrPublickey: accessTokenSecret })
-          console.log("decoded_authorization",decoded_authorizarion)
           if (decoded_authorizarion === null) {
             throw new Error(USERS_MESSAGE.ACCESS_TOKEN_IS_INVALID)
           }

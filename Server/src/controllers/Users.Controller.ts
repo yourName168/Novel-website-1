@@ -44,7 +44,6 @@ export const logoutController = async (req: Request, res: Response, next: NextFu
 }
 export const getMeController = async (req: Request, res: Response, next: NextFunction) => {
   const { user_id } = req.decoded_authorizarion as JwtPayload
-  console.log(req.body)
   const result = await usersService.getMe(user_id)
   return res.json(result)
 }
