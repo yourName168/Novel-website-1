@@ -1,5 +1,5 @@
 import { renderAllCategory } from './category.js';
-import { getListChapterOfNovel, getNextChapter, getPreviousChapter, getChapter, getQueryString } from './const.js';
+import { getChapter, getListChapterOfNovel, getNextChapter, getPreviousChapter, getQueryString } from './const.js';
 const contentSelector = document.querySelector('.content');
 const previousChapterSelector = document.querySelector('.previous-chapter');
 const nextChapterSelector = document.querySelector('.next-chapter');
@@ -23,7 +23,7 @@ const renderChapter = async (chapter) => {
 }
 const increaseView = async (chapterId, novelCode) => {
     try {
-        const response = await fetch(`http://193.203.160.126:3535/novels/increase-view`, {
+        const response = await fetch(`https://novel-server-1.onrender.com/novels/increase-view`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json"

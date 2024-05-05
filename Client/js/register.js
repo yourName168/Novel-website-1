@@ -1,6 +1,6 @@
 const registerHandler = async (fullname, email, password, confirm_password) => {
     try {
-        const result = await fetch("http://193.203.160.126:3535/users/register", {
+        const result = await fetch("https://novel-server-1.onrender.com/users/register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

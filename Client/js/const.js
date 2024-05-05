@@ -1,4 +1,4 @@
-const url = "http://193.203.160.126:3535"
+const url = "https://novel-server-1.onrender.com"
 export const getQueryString = (name) => {
     const search = window.location.search;
     const searchParams = new URLSearchParams(search);
