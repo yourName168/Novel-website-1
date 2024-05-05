@@ -58,7 +58,7 @@
                                     <i class="fa-brands fa-facebook-f"></i>
                                     <span class="fb_name">TruyenOPTIT</span>
                                 </li>
-                                
+
                             </ul>
                         </div>
                     </div>
@@ -89,10 +89,10 @@
                                 <ul class="rank-type">
                                     <div class="list">
                                         <li>
-                                            <a href="./index.html?sort-by=alphabet" >Theo Alphabet</a>
+                                            <a href="./index.html?sort-by=alphabet">Theo Alphabet</a>
                                         </li>
                                         <li>
-                                            <a href="./index.html?sort-by=view" >Theo lượt xem</a>
+                                            <a href="./index.html?sort-by=view">Theo lượt xem</a>
                                         </li>
                                     </div>
                                 </ul>
@@ -108,7 +108,7 @@
                         <div class="search">
                             <input id="searchInput" placeholder="Tìm truyện tại truyenoptit">
                             <button id="searchButton">
-                                <i class="fa-solid fa-magnifying-glass"></i> 
+                                <i class="fa-solid fa-magnifying-glass"></i>
                             </button>
                         </div>
 
@@ -127,23 +127,23 @@
                     <div class="slide-static">
                         <div class="slide first_slide">
                             <div class="content">
-                                <h4 class="title">Tai sinh thanh cong chua</h4>
+                                <h4 class="title">Tái sinh thành công chúa</h4>
                                 <div class="in4">
                                     <div class="chap item">
-                                        <i class="fa-regular fa-heart"></i>
-                                        <span>Chap 1</span>
+                                        <i class="fa-solid fa-book"></i>
+                                        <span>Tập 1</span>
                                     </div>
                                     <div class="view item">
-                                        <i class="fa-regular fa-heart"></i>
-                                        <span>123 luot xem</span>
+                                        <i class="fa-regular fa-eye"></i>
+                                        <span>123</span>
                                     </div>
                                     <div class="calendar item">
-                                        <i class="fa-regular fa-heart"></i>
+                                        <i class="fa-regular fa-calendar"></i>
                                         <span>12/02/24</span>
                                     </div>
                                     <div class="follow item">
-                                        <i class="fa-regular fa-heart"></i>
-                                        <span>123 theo doi</span>
+                                        <i class="fa-solid fa-user-plus"></i>
+                                        <span>123</span>
                                     </div>
                                 </div>
                             </div>
@@ -193,7 +193,7 @@
 
                         <div class="top-view">
                             <h2 class="view-text">
-                                XEM NHIỀU NHẤT 
+                                XEM NHIỀU NHẤT
                             </h2>
                             <div class="view-list">
                             </div>
@@ -254,11 +254,18 @@
         </div>
     </footer>
 
-
-
-
-
-
+    <script>
+        const theme = document.querySelector("#theme-link");
+        const presentDarkMode = localStorage.getItem("dark-mode")
+        if (presentDarkMode==true) {
+            console.log(presentDarkMode)
+            theme.href = "../assets/css/home-dark.css";
+            // Xử lý khi darkMode là true
+        } else {
+            // Xử lý khi darkMode là false
+            theme.href = "../assets/css/home.css";
+        }
+    </script>
     <!-- Nhúng Link BOOTSTRAP 4 JS -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

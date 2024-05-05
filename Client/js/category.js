@@ -13,11 +13,11 @@ const renderTopCategoryView = async () => {
     categoriesToShow.forEach(category => {
         const queryRequest = category.novelId.map((id) => `${id}`).join(",");
         const categoryHTML = `
-            <a href="./index.html?listNovelId=${queryRequest}">
-                <div class="category-item">
-                    <span>${category.categoryName}</span>
-                </div>
-            </a>
+        <a href="./index.html?listNovelId=${queryRequest}">
+            <div class="category-item" style="background-image: url(${category.imgUrl})">
+                <span>${category.categoryName}</span>
+            </div>
+        </a>
         `;
         listCategorySelector.innerHTML += categoryHTML;
     });
@@ -28,11 +28,14 @@ const renderAllCategory = async () => {
     data.forEach(category => {
         const queryRequest = category.novelId.map((id) => `${id}`).join(",");
         const categoryHTML = `
-        <a href="./index.html?listNovelId=${queryRequest}">
-            <div class="category-item" style="background-image: url(${category.imgURL})">
+        <li>
+            <a href="./index.html?listNovelId=${queryRequest}">
+                <div class="category-item" style="background-image: url(${category.imgURL})">
                 <span>${category.categoryName}</span>
-            </div>
-        </a>
+                </div>
+            </a>
+        </li>
+    
     
         `;
         listCategoryOnHeader.innerHTML += categoryHTML;

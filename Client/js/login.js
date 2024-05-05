@@ -4,7 +4,7 @@ const registerSelector = document.querySelector('.register')
 
 const loginHandler = async (email, password) => {
     try {
-        const result = await fetch("http://193.203.160.126:3535/users/login", {
+        const result = await fetch("https://novel-server-1.onrender.com/users/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
